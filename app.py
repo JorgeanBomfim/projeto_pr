@@ -57,7 +57,7 @@ def main():
 
     if st.button("Iniciar Conversa no WhatsApp"):
         whatsapp_link = create_whatsapp_link(phone_number, message)
-        st.write(f"Para iniciar a conversa, clique no link abaixo:\n[{whatsapp_link}]({whatsapp_link})")
+        st.markdown(f"Para iniciar a conversa, clique [aqui]({whatsapp_link}).")
         
 if __name__ == "__main__":
     main()
