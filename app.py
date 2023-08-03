@@ -1,6 +1,5 @@
 import streamlit as st
 import webbrowser
-import qrcode
 
 st.set_page_config(
     page_title="MRF",
@@ -56,15 +55,6 @@ def main():
 
     phone_number = "+5521979215685"
     message = "Olá, estou interessado em seus produtos."
-
-    if st.button("Gerar QR Code do WhatsApp"):
-        if phone_number:
-            whatsapp_link = create_whatsapp_link(phone_number, message)
-            qr_code = qrcode.make(whatsapp_link)
-            st.image(qr_code)
-            st.write("Para iniciar a conversa, abra o aplicativo WhatsApp em seu dispositivo móvel, vá para 'Conversas' -> 'Scanner de código QR' e escaneie o código acima.")
-        else:
-            st.warning("Digite um número de telefone válido.")
 
     if st.button("Iniciar Conversa no WhatsApp"):
         if phone_number:
