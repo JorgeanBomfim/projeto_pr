@@ -1,5 +1,4 @@
 import streamlit as st
-import webbrowser
 
 st.set_page_config(
     page_title="MRF",
@@ -58,8 +57,7 @@ def main():
 
     if st.button("Iniciar Conversa no WhatsApp"):
         whatsapp_link = create_whatsapp_link(phone_number, message)
-        webbrowser.open_new_tab(whatsapp_link)
-        st.success("Conversa iniciada no WhatsApp!")
+        st.markdown(f"Para iniciar a conversa, clique ({whatsapp_link}).")
         
 if __name__ == "__main__":
     main()
