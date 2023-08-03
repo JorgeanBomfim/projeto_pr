@@ -1,5 +1,6 @@
 import streamlit as st
 import webbrowser
+import qrcode
 
 st.set_page_config(
     page_title="MRF",
@@ -7,8 +8,12 @@ st.set_page_config(
     page_icon=":hammer:"
 )
 
-def create_whatsapp_link(phone_number):
-    return f"https://wa.me/{phone_number}"
+def create_whatsapp_link(phone_number, message):
+    base_url = f"https://wa.me/{phone_number}/"
+    if message:
+        return f"{base_url}?text={message}"
+    else:
+        return base_url
 
 def show_products(products, title, description):
     st.subheader(title)
@@ -50,11 +55,24 @@ def main():
     show_products(products_col_2, "Encanamento", "Tudo que você precisa para trabalhos de encanamento.")
 
     phone_number = "+5521979215685"
+    message = "Olá, estou interessado em seus produtos."
+
+    if st.button("Gerar QR Code do WhatsApp"):
+        if phone_number:
+            whatsapp_link = create_whatsapp_link(phone_number, message)
+            qr_code = qrcode.make(whatsapp_link)
+            st.image(qr_code)
+            st.write("Para iniciar a conversa, abra o aplicativo WhatsApp em seu dispositivo móvel, vá para 'Conversas' -> 'Scanner de código QR' e escaneie o código acima.")
+        else:
+            st.warning("Digite um número de telefone válido.")
 
     if st.button("Iniciar Conversa no WhatsApp"):
-        whatsapp_link = create_whatsapp_link(phone_number)
-        webbrowser.open(whatsapp_link)
-        st.success("Conversa iniciada no WhatsApp!")
+        if phone_number:
+            whatsapp_link = create_whatsapp_link(phone_number, message)
+            webbrowser.open(whatsapp_link)
+            st.success("Conversa iniciada no WhatsApp!")
+        else:
+            st.warning("Digite um número de telefone válido.")
 
 if __name__ == "__main__":
     main()
