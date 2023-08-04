@@ -1,11 +1,21 @@
 import streamlit as st
 import base64
 
+
+
 st.set_page_config(
     page_title="MRF",
-    layout="centered",
+    layout="wide",
     page_icon=":hammer:"
+    
 )
+
+# URL da imagem do banner
+banner_image_url = "https://img.freepik.com/vetores-premium/modelo-de-banner-de-servico-de-loja-de-ferramentas-de-construcao_38901-507.jpg?w=1380"
+
+# Exibe a imagem do banner
+st.image(banner_image_url, use_column_width=True)
+
 
 def create_whatsapp_link(phone_number, message):
     base_url = "https://api.whatsapp.com/send/"
@@ -31,7 +41,7 @@ def show_products(products, title, description):
             with cols[idx]:
                 # Utiliza um wrapper de div para aplicar estilos de borda
                 st.markdown(
-                    f'<div style="border: 2.0px solid #eaeaea; padding: 3px;">'
+                    f'<div style="border: 2.0px solid #eaeaea; padding: 50px;">'
                     f'<img src="{product["image_url"]}" alt="{product["name"]}" style="width: 100%;"/>'
                     f'<p><strong>{product["name"]}</strong></p>'
                     f'<p>Descrição: {product["description"]}</p>'
@@ -41,8 +51,7 @@ def show_products(products, title, description):
                 )
 
 def main():
-    st.title("App do MRF")
-
+    
     products_col_1 = [
         {"name": "Produto 1", "value": "50,99R$", "description": "Descrição do Produto 1...", "image_url": "https://cdn.leroymerlin.com.br/contents/40_tipos_de_ferramentas_nomes_e_para_que_servem_345c_original.jpg"},
         {"name": "Produto 2", "value": "50,99R$", "description": "Descrição do Produto 2...", "image_url": "https://cdn.leroymerlin.com.br/contents/40_tipos_de_ferramentas_nomes_e_para_que_servem_c3ee_original.jpg"},
@@ -57,7 +66,6 @@ def main():
         {"name": "Produto 3", "value": "50,99R$", "description": "Descrição do Produto 3...", "image_url": "https://chatuba.vtexassets.com/arquivos/ids/160824-800-auto?v=637147144152500000&width=800&height=auto&aspect=true"},
         {"name": "Produto 4", "value": "50,99R$", "description": "Descrição do Produto 4...", "image_url": "https://cdn.awsli.com.br/1659/1659184/produto/93887665/b56e1e85f3.jpg"}
     ]
-    st.header("Produtos em Estoque")
 
     show_products(products_col_1, "Ferramentas", "Temos uma grande variedade de ferramentas disponíveis.")
     show_products(products_col_2, "Encanamento", "Tudo que você precisa para trabalhos de encanamento.")
