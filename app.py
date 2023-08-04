@@ -1,20 +1,31 @@
 import streamlit as st
 import base64
 
-
-
 st.set_page_config(
     page_title="MRF",
-    layout="wide",
-    page_icon=":hammer:"
-    
+    layout="wide"    
 )
+
 
 # URL da imagem do banner
 banner_image_url = "https://img.freepik.com/vetores-premium/modelo-de-banner-de-servico-de-loja-de-ferramentas-de-construcao_38901-507.jpg?w=1380"
 
 # Exibe a imagem do banner
 st.image(banner_image_url, use_column_width=True)
+
+
+
+## ocultando menu e marca d'agua
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
+
 
 
 def create_whatsapp_link(phone_number, message):
