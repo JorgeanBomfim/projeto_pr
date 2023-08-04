@@ -60,7 +60,7 @@ def main():
         params = f"?phone={phone_number}&text={message}&type=phone_number&app_absent=0"
         return base_url + params
 
-    phone_number = "21979215685"
+    phone_number = "5521979215685"
     message = "Olá, estou interessado em comprar o produto XYZ."
 
     whatsapp_link = create_whatsapp_link(phone_number, message)
